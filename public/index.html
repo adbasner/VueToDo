@@ -24,16 +24,17 @@
     <h2>{{ message2 }}</h2>
     <h2>{{ message3 }}</h2>
     <input v-model="message3">
-    <ul> 
-      <li v-for="task in tasks">{{ task.id }}: {{ task.todo }}</li>
-    </ul>
-    <div>
-      <p>Add a new todo item!</p>
-      <p>
-        ToDo: <input v-model="newTodo.todo"> 
-      </p>
-      <button v-on:click="addTodo()">Add to todo list</button>
+    <div v-for="task in tasks"> 
+      <p v-on:click="removeTodo" >{{ task.id }}: {{ task.todo }}</p>
     </div>
+    <div>
+    <hr>
+    <p>Add a new todo item!</p>
+    <p>
+      ToDo: <input v-model="newTodo.todo"> 
+    </p>
+    <button v-on:click="addTodo()">Add to todo list</button>
+  </div>
 
   </div>
 </template> 

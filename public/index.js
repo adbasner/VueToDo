@@ -42,19 +42,19 @@ var HomePage = {
         complete: false
       };
 
-      if (this.newTodo.todo === "") {
-        console.log('Empty todo, not added');
-        // this.tasks.push({         
-        //   id: newId,
-        //   todo: "EMPTY",
-        //   complete: false 
-        // });
-      } else {
+      if (this.newTodo.todo !== "") {
         this.tasks.push(newTodoItem);
-        console.log('Added a todo');
-      }
+      } 
 
       this.newTodo.todo = "";
+    },
+
+    removeTodo: function(inputTask) {
+      // find index
+      var index = this.tasks.indexOf(inputTask);
+      // remove index from array
+      this.tasks.splice(index, 1);
+      // this.tasks
     }
   },
   computed: {}
@@ -75,3 +75,4 @@ var app = new Vue({
 // var tasks = axios.get('/api/tasks').then(function(response.data) { 
 
 // });
+
