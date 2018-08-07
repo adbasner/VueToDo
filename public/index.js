@@ -2,33 +2,15 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!",
-      message2: "message2",
-      message3: "sldfjasf",
+      message: "Welcome to the world's best todo app",
       tasks: 
       [
-        {
-          id: 1,
-          todo: "Something",
-          complete: false
-        },
-        {
-          id: 2,
-          todo: "Something else",
-          complete: false 
-        },
-        {
-          id: 3,
-          todo: "Something more",
-          complete: true 
-        }
+        { id: 1, todo: "Something", complete: false },
+        { id: 2, todo: "Something else", complete: false },
+        { id: 3, todo: "Something more", complete: true }
       ],
       newTodo:
-      {
-        id: "",
-        todo: "",
-        complete: false
-      }
+        { id: "", todo: "", complete: false }
     };
   },
   created: function() {},
@@ -49,12 +31,40 @@ var HomePage = {
       this.newTodo.todo = "";
     },
 
-    removeTodo: function(inputTask) {
-      // find index
-      var index = this.tasks.indexOf(inputTask);
-      // remove index from array
-      this.tasks.splice(index, 1);
-      // this.tasks
+    toggleTask: function(inputTask) {
+      // console.log(inputTask.complete);
+      inputTask.complete = !inputTask.complete;
+      // console.log(inputTask.complete);
+    }
+    // removeTodo: function(inputTask) {
+    //   // find index
+    //   var index = this.tasks.indexOf(inputTask);
+    //   // remove index from array
+    //   this.tasks.splice(index, 1);
+    //   // this.tasks
+    // }
+    ,
+    totalTasks: function() {
+      return this.tasks.length;
+    },
+
+    remainingTasks: function() {
+      var remaining = this.tasks.length;
+      for (var i = 0; i < this.tasks.length; i++) {
+        if (this.tasks[i].complete === true) {
+          remaining--;
+        }
+      }
+      return remaining;
+    },
+
+    deleteCompleted: function() {
+      for (var i = this.tasks.length - 1; i >= 0; i--) {
+        if (this.tasks[i].complete === true) {
+          this.tasks.splice(i, 1);
+          // console.log(i);
+        }
+      }
     }
   },
   computed: {}
