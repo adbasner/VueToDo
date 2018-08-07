@@ -13,8 +13,11 @@ var HomePage = {
         { id: "", todo: "", complete: false }
     };
   },
+
   created: function() {},
+
   methods: {
+
     addTodo: function() {
       console.log("Adding item to todo list");
       var newId = this.tasks.length + 1;
@@ -32,18 +35,9 @@ var HomePage = {
     },
 
     toggleTask: function(inputTask) {
-      // console.log(inputTask.complete);
       inputTask.complete = !inputTask.complete;
-      // console.log(inputTask.complete);
-    }
-    // removeTodo: function(inputTask) {
-    //   // find index
-    //   var index = this.tasks.indexOf(inputTask);
-    //   // remove index from array
-    //   this.tasks.splice(index, 1);
-    //   // this.tasks
-    // }
-    ,
+    },
+    
     totalTasks: function() {
       return this.tasks.length;
     },
@@ -62,12 +56,15 @@ var HomePage = {
       for (var i = this.tasks.length - 1; i >= 0; i--) {
         if (this.tasks[i].complete === true) {
           this.tasks.splice(i, 1);
-          // console.log(i);
         }
       }
     }
+    // Brian made a new array, pushing incomplete tasks into it, then 
+
   },
+
   computed: {}
+
 };
 
 var router = new VueRouter({
@@ -85,4 +82,13 @@ var app = new Vue({
 // var tasks = axios.get('/api/tasks').then(function(response.data) { 
 
 // });
+
+// changed this function to toggle task
+// removeTodo: function(inputTask) {
+//   // find index
+//   var index = this.tasks.indexOf(inputTask);
+//   // remove index from array
+//   this.tasks.splice(index, 1);
+//   // this.tasks
+// }
 

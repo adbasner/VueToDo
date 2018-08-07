@@ -22,26 +22,40 @@
   <div class="vue-component">
 
     <h1>{{ message }}</h1>
+    
     <hr>
+
     <div>
       <p>Total tasks on the list: {{ totalTasks() }}</p>
-    </div>  
+    </div>
+
     <div>
       <p>Remaining Tasks: {{ remainingTasks() }}</p>
     </div>
+
     <hr>
+
     <div v-for="task in tasks"> 
       <p v-on:click="toggleTask(task)" v-bind:class="{complete: task.complete}" >{{ task.todo }}</p>
     </div>
+
     <div>
-    <hr>
-    <p>Add a new todo item!</p>
-    <p>
-      ToDo: <input v-model="newTodo.todo"> 
-    </p>
-    <button v-on:click="addTodo()">Add to todo list</button>
-    <button v-on:click="deleteCompleted()">Delete Completed Items</button>
-  </div>
+
+      <hr>
+
+      <p>Add a new todo item!</p>
+
+      <p>ToDo: <input v-model="newTodo.todo"></p>
+
+      <button v-on:click="addTodo()">
+        Add to todo list
+      </button>
+
+      <button v-on:click="deleteCompleted()">
+        Delete Completed Items
+      </button>
+
+    </div>
 
   </div>
 </template> 
