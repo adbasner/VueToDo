@@ -5,7 +5,7 @@ class Api::TasksController < ApplicationController
   end
 
   def create
-    task = Task.new(text: params[:text], completed: false)
+    task = Task.new(todo: params[:todo], complete: false)
     task.save
     render json: task.as_json
   end
@@ -17,8 +17,8 @@ class Api::TasksController < ApplicationController
 
   def update
     task = Task.find_by(id: params[:id])
-    task.text = params[:text] || task.text
-    task.completed = params[:completed] || task.completed
+    task.todo = params[:todo] || task.todo
+    task.complete = params[:complete] || task.complete
     task.save
     render json: task.as_json
   end

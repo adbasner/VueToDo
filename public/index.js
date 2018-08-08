@@ -3,35 +3,40 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to the world's best todo app",
-      tasks: 
-      [
-        { id: 1, todo: "Something", complete: false },
-        { id: 2, todo: "Something else", complete: false },
-        { id: 3, todo: "Something more", complete: true }
-      ],
-      newTodo:
-        { id: "", todo: "", complete: false }
+      tasks: [],
+      newTodo: { todo: "", complete: false }
     };
   },
 
-  created: function() {},
+  created: function() {
+    console.log('in created function');
+    axios.get('/api/tasks').then(function(response) {
+      console.log(response.data);
+      this.tasks = response.data;
+    }.bind(this));
+
+  },
 
   methods: {
 
     addTodo: function() {
       console.log("Adding item to todo list");
-      var newId = this.tasks.length + 1;
-      var newTodoItem = {
-        id: newId,
-        todo: this.newTodo.todo,
-        complete: false
+
+      // if (this.newTodo.todo !== "") {
+      //   this.tasks.push({todo: this.newTodo.todo, complete: false});
+      //   this.newTodo.todo = "";
+      // } 
+      var newParams = {
+        todo: this.newTodo.todo
       };
 
-      if (this.newTodo.todo !== "") {
-        this.tasks.push(newTodoItem);
-      } 
-
-      this.newTodo.todo = "";
+      axios.post('/api/tasks', newParams).then(function(response) {
+        console.log(response.data);
+        console.log("made post request to api");
+        console.log(this.tasks);
+        this.tasks.push(response.data);
+        this.newTodo = {todo: "", complete: false};
+      }.bind(this));
     },
 
     toggleTask: function(inputTask) {
